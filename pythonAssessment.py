@@ -50,13 +50,18 @@ if __name__ == "__main__":
     with open("article.txt", "r", encoding="utf-8") as f:
         text = f.read()
 
-    # ask user which word to search for
-    word_to_find = input("Enter a word to search for: ")
-    # get count using the function
-    count = count_specific_word(text, word_to_find)
+    # while loop to let user search repeatedly
+    while True:
+        word_to_find = input("Enter a word to search for (or type 'quit' to exit): ")
+        if word_to_find.lower() == "quit":
+            print("Exiting word search...")
+            break
 
-    # results for the chosen word
-    print(f"The word '{word_to_find}' appears {count} times in the article.")
+        # get count using the function
+        count = count_specific_word(text, word_to_find)
+
+        # results for the chosen word
+        print(f"The word '{word_to_find}' appears {count} times in the article.")
 
     # display the most common word
     most_common = identify_most_common_word(text)
@@ -70,18 +75,18 @@ if __name__ == "__main__":
     if average_length != 0.0:  # if there are words
         print(f"The average word length is {average_length:.2f}.")
     else:
-        print(f"The average word length is 0.0 (no words found).")
+        print("The average word length is 0.0 (no words found).")
 
-    #Display paragraph count
+    # display paragraph count
     paragraphs = count_paragraphs(text)
     if paragraphs == 1:
         print("The count of paragraphs is 1.")
     else:
         print(f"The count of paragraphs is {paragraphs}.")
 
-    #Display count sentences
+    # display sentence count
     sentences = count_sentences(text)
     if sentences == 1:
         print("The count of sentences is 1.")
     else:
-        print(f"the count of sentences is {sentences}.")
+        print(f"The count of sentences is {sentences}.")
